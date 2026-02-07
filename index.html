@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceylinsu | AR Portfolio v1.3</title>
+    
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6c5ce7 0%, #00cec9 100%);
+            --accent-color: #fd79a8;
+            --dark-bg: #0f0c29;
+            --text-light: #f5f6fa;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* --- Versiyon Rozeti --- */
+        #version-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 8px 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 0 20px rgba(253, 121, 168, 0.6);
+            z-index: 99999;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- AR Sahne Konteynırı --- */
+        #ar-container {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            border: 2px solid var(--accent-color);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 2rem 0;
+            background: #000;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+        
+        .hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 4rem; margin: 0; }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .ar-instructions {
+            text-align: center;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        footer { text-align: center; padding: 3rem; opacity: 0.7; }
+
+        /* AR.js'in oluşturduğu tuvali kontrol etmek için */
+        .a-canvas {
+            width: 100% !important;
+            height: 100% !important;
+            left: 0 !important;
+            top: 0 !important;
+        }
+    </style>
+</head>
+<body style="margin: 0; overflow: auto;">
+
+    <div id="version-badge">v1.3.0</div>
+
+    <div class="container">
+        <header class="hero">
+            <h1>CEYLINSU</h1>
+            <p style="color: #a29bfe; -webkit-text-fill-color: #a29bfe;">AR & WEB DEVELOPER</p>
+        </header>
+
+        <section id="ar-experience">
+            <h2 style="font-family: 'Montserrat'; text-align: center;">Magic <span>AR</span> Experience</h2>
+            <p class="ar-instructions">
+                <i class="fas fa-camera"></i> Kameranı aç ve QR klasöründeki özel işaretçiyi göster!
+            </p>
+            
+            <div id="ar-container">
+                <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+                    
+                    <a-marker type="pattern" url="qr/pattern-ar_projesi.patt">
+                        
+                        <a-box position="0 0.5 0" material="color: #6c5ce7; opacity: 0.8;" animation="property: rotation; to: 0 360 0; loop: true; dur: 3000">
+                            <a-text value="CEYLINSU" align="center" position="0 0.6 0" color="#fff" width="4"></a-text>
+                        </a-box>
+                        
+                        <a-torus color="#fd79a8" arc="360" radius="0.5" radius-tubular="0.05" rotation="90 0 0"></a-torus>
+
+                    </a-marker>
+
+                    <a-entity camera></a-entity>
+                </a-scene>
+            </div>
+        </section>
+
+        <div class="info-card">
+            <h3>Hakkımda v1.3</h3>
+            <p>
+                Bu versiyonda gerçekliği kodla büküyoruz. <strong>pattern-ar_projesi.patt</strong> dosyası aracılığıyla 
+                fiziksel dünya ile dijital portfolyom arasında bir köprü kurdum. Web teknolojileri sadece ekranda değil, 
+                artık kameranın olduğu her yerde!
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Ceylinsu | Geleceği Tasarla, Gerçekliği Artır.</p>
+    </footer>
+
+    <script>
+        console.log("%c Ceylinsu AR v1.3.0 Devreye Girdi! ", "background: #fd79a8; color: #fff; font-size: 16px;");
+    </script>
+</body>
+</html>
